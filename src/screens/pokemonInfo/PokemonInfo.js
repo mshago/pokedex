@@ -10,36 +10,15 @@ import {
 } from 'react-native';
 
 //components
-import TextApp from '../components/TextApp'
-import ButtonSection from '../components/ButtonSection'
-import * as colors from '../assets/colors/colors'
-import { PokemonStats } from './PokemonStats';
-import PokemonEvolutions from './PokemonEvolutions'
-import PokemonMoves from './PokemonMoves'
+import TextApp from '../../components/TextApp'
+import ButtonSection from '../../components/ButtonSection'
+import {COLORS_TYPE} from '../../assets/colors/colors'
+import { PokemonStats } from '../PokemonStats';
+import PokemonEvolutions from '../PokemonEvolutions'
+import PokemonMoves from '../PokemonMoves'
 
 //custom hooks
-import { useFetchPokemon } from '../hooks/useFetchPokemon';
-
-const COLORS = {
-  bug:colors.COLOR_TYPE_BUG,
-  dark:colors.COLOR_TYPE_DARK,
-  dragon:colors.COLOR_TYPE_DRAGON,
-  electric:colors.COLOR_TYPE_ELECTRIC,
-  fairy:colors.COLOR_TYPE_FAIRY,
-  fight:colors.COLOR_TYPE_FIGHTING,
-  fire:colors.COLOR_TYPE_FIRE,
-  flying:colors.COLOR_TYPE_FLYING,
-  ghost:colors.COLOR_TYPE_GHOST,
-  grass:colors.COLOR_TYPE_GRASS,
-  ground:colors.COLOR_TYPE_GROUND,
-  ice:colors.COLOR_TYPE_ICE,
-  normal:colors.COLOR_TYPE_NORMAL,
-  poison:colors.COLOR_TYPE_POISON,
-  psychic:colors.COLOR_TYPE_PSYCHIC,
-  rock:colors.COLOR_TYPE_ROCK,
-  steel:colors.COLOR_TYPE_STEEL,
-  water:colors.COLOR_TYPE_WATER,
-}
+import { useFetchPokemon } from '../../hooks/useFetchPokemon';
 
 //consts
 const HEIGHT = Dimensions.get('window').height
@@ -54,7 +33,7 @@ export default ({ navigation, route }) => {
     setView(new_view)
   }
 
-  const COLOR = loading?COLORS['normal']:COLORS[pokemon.types[0]]
+  const COLOR = loading?COLORS_TYPE['normal']:COLORS_TYPE[pokemon.types[0]]
 
   return (
     <ScrollView style={{

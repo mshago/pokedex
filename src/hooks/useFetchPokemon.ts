@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { getPokemon, getPokemonDesc } from "../helpers/getPokemon"
+import { PokemonDataT } from "../types"
 
-export const useFetchPokemon = (url) => {
+export const useFetchPokemon = (url:string):useFetchPokemonT => {
 
     const regex = /(\s)/ig
-    const [state, setState] = useState({
-        data:[],
+    const [state, setState] = useState<useFetchPokemonT>({
+        data:undefined,
         loading: true,
     })
 
@@ -31,3 +32,9 @@ export const useFetchPokemon = (url) => {
 
     return state;
 }
+
+type useFetchPokemonT = {
+    data:PokemonDataT| undefined
+    loading:boolean
+}
+

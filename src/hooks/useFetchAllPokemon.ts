@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllPokemon } from "../helpers/getPokemon";
+import { DataListT } from "../types";
 
-export const useFetchAllPokemon = () => {
-  const [state, setState] = useState({
-    data: [],
+export const useFetchAllPokemon = ():useFetchAllPokemonT => {
+  const [state, setState] = useState<useFetchAllPokemonT>({
+    data: undefined,
     loading: true,
   });
 
@@ -18,4 +19,9 @@ export const useFetchAllPokemon = () => {
 
   return state;
 };
+
+type useFetchAllPokemonT = {
+  data: DataListT[] | undefined
+  loading:boolean
+}
 
