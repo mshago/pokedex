@@ -8,4 +8,6 @@ export type TContainer = {
   containerStyle?:ViewStyle
   contentStyle?:ViewStyle
   isScrollViewDisabled?:boolean
+  backgroundColor?:string
+  isHeaderVisible?:boolean
 }

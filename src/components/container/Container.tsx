@@ -17,6 +17,8 @@ export const Container: FC<TContainer> = ({
   containerStyle,
   contentStyle,
   isScrollViewDisabled = false,
+  backgroundColor,
+  isHeaderVisible = false,
   ...rest
 })  => {
   const Container = isScrollViewDisabled ? View : ScrollView;
@@ -44,9 +46,10 @@ export const Container: FC<TContainer> = ({
       style={[
         styles.safeAreaContainer,
         safeAreaStyle,
+        {backgroundColor}
       ]}
     >
-      <Header title={'Pokemon'}/>
+      {isHeaderVisible && <Header title={'Pokemon'}/>}
       <Container {...containerDynamicStyle} {...rest}>
         <View style={[styles.content, contentStyle]}>{children}</View>
       </Container>

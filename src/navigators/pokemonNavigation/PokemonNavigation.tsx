@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { PokemonList } from "../../screens/pokemonList/pokemonList";
-import Pokemon from "../../screens/pokemonInfo/PokemonInfo";
+import { PokemonInfo } from "../../screens/pokemonInfo/pokemonInfo";
 import {
   EPokemonNavigationRoutes,
   TPokemonNavigationRoutes,
@@ -21,7 +21,7 @@ export const PokemonNavigation = () => {
       />
       <Stack.Screen
         name={EPokemonNavigationRoutes.POKEMON_INFO}
-        component={Pokemon}
+        component={PokemonInfo}
       />
     </Stack.Navigator>
   );

@@ -11,14 +11,13 @@ export const PokemonListView : FC<PokemonListT>= ({ data, isLoading, handlePress
         {isLoading && <Text>Loading</Text>}
         <FlatList
           data={data}
-          initialNumToRender={10}
-          renderItem={renderPokemonItem}
+          renderItem={(item) => renderPokemonItem(item, handlePress)}
           keyExtractor={({ name }) => String(name)}
         />
     </Container>
   );
 };
 
-const renderPokemonItem = ({item}: ListRenderItemInfo<DataListT>) => {
-  return <ListItem url={item.url} />
+const renderPokemonItem = ({item}: ListRenderItemInfo<DataListT>, handlePress) => {
+  return <ListItem url={item.url} onPress={() => handlePress(item.url)} />
 }

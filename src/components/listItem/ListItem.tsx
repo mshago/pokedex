@@ -1,11 +1,6 @@
-import React, { useState } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  Text,
-} from "react-native";
-import TextApp from "../TextApp";
+import React from "react";
+import { View, TouchableOpacity, Image} from "react-native";
+import {TextApp} from "../textApp/TextApp";
 import { useFetchPokemonPreview } from "../../hooks/useFetchPokemonPreviewInfo";
 import { styles } from "../listItem/ListItem.style";
 import { FC } from "react";
@@ -18,7 +13,7 @@ const ICONS = {
   dragon: require(URI_ICONS + "Dragon.png"),
   electric: require(URI_ICONS + "Electric.png"),
   fairy: require(URI_ICONS + "Fairy.png"),
-  fight: require(URI_ICONS + "Fight.png"),
+  fighting: require(URI_ICONS + "Fight.png"),
   fire: require(URI_ICONS + "Fire.png"),
   flying: require(URI_ICONS + "Flying.png"),
   ghost: require(URI_ICONS + "Ghost.png"),
@@ -38,55 +33,31 @@ const TypeImage: FC<TypeImageT> = ({ type }) => {
 };
 
 export const ListItem: FC<ListItemT> = ({ url, onPress }) => {
-  const [pressed, setPressed] = useState(false);
+  const { data, loading } = useFetchPokemonPreview(url);
 
-  const { data: pokemon, loading } = useFetchPokemonPreview(url);
-
-  let justifyTypes: any;
-
-  if(pokemon){
-    justifyTypes = [styles.typesContainer,{justifyContent:pokemon.types.length > 1 ? 'space-between':'flex-end'}]
-  }
-
-  if (loading) {
-    return (
-      <View style={styles.item}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
+  if (loading) return <TextApp title='Loading...' style={{}}/>;
 
   return (
     <TouchableOpacity
-      onPressOut={() => setPressed(!pressed)}
-      onPressIn={() => setPressed(!pressed)}
       onPress={onPress}
-      activeOpacity={0.8}
-      style={[
-        {
-          backgroundColor: pressed ? "rgb(210,230,255)" : "white",
-        },
-        styles.item,
-      ]}
+      style={styles.itemContainer}
     >
-      <>
-        <View style={styles.pokemon}>
-          <Image
-            source={{
-              uri: pokemon.sprite,
-            }}
-            style={styles.photo}
-          />
-          <View style={styles.info}>
-            <TextApp style={styles.name} title={pokemon.name} />
-            <TextApp style={styles.number} title={"#" + pokemon.number} />
-          </View>
-        </View>
-        <View style={justifyTypes}>
-          <TypeImage type={pokemon.types ? pokemon.types[0] : "normal"} />
-          {pokemon.types && pokemon.types.length > 1 ? <TypeImage type={pokemon.types[1]} /> : null}
-        </View>
-      </>
+      <View style={styles.pokemonImageContainer}>
+        <Image
+          source={{
+            uri: data.sprite,
+          }}
+          style={styles.pokemonImage}
+        />
+      </View>
+      <View style={styles.pokemonInfo}>
+        <TextApp style={styles.name} title={data.name} />
+        <TextApp style={styles.number} title={"#" + data.number} />
+      </View>
+      <View style={styles.types}>
+        <TypeImage type={data.types ? data.types[0] : "normal"} />
+        {data.types.length > 1 && <TypeImage type={data.types[1]} />}
+      </View>
     </TouchableOpacity>
   );
 };

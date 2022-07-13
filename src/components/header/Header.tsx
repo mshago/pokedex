@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { View, StatusBar } from "react-native";
-import TextApp from "../../components/TextApp";
+import {TextApp} from "../textApp/TextApp";
 import { styles } from "./Header.style";
 import { HeaderT } from "./Header.type";
 
