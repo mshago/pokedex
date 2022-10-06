@@ -7,8 +7,9 @@ import {
 } from "react-native";
 
 import { styles } from "./Container.style";
-import {Header} from '../header/Header'
+import { Header } from '../header/Header'
 import { TContainer } from "./Container.type";
+import { COLORS } from "../../assets/colors/colors";
 
 export const Container: FC<TContainer> = ({
   children,
@@ -17,7 +18,7 @@ export const Container: FC<TContainer> = ({
   containerStyle,
   contentStyle,
   isScrollViewDisabled = false,
-  backgroundColor,
+  backgroundColor = COLORS.red ,
   isHeaderVisible = false,
   ...rest
 })  => {

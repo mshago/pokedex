@@ -7,7 +7,7 @@ import { DataListT } from "../../types";
 export const PokemonListView : FC<PokemonListT>= ({ data, isLoading, handlePress }) => {
 
   return (
-    <Container isScrollViewDisabled>
+    <Container isScrollViewDisabled isHeaderVisible>
         {isLoading && <Text>Loading</Text>}
         <FlatList
           data={data}

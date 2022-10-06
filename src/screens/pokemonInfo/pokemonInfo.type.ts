@@ -9,4 +9,5 @@ export type PokemonInfoViewT = {
   selectedView?:string
   setSelectedView?:(view:string) => void
   pokemon:PokemonDataT
+  isLoading:boolean
 }

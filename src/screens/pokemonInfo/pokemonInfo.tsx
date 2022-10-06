@@ -20,6 +20,7 @@ export const PokemonInfo = ({ navigation, route }) => {
       selectedView={selectedView}
       setSelectedView={setSelectedView}
       pokemon={pokemon}
+      isLoading={loading}
     />
   );
 };

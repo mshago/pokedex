@@ -1,19 +1,11 @@
 import React, { FC } from "react";
 import {
   View,
-  StyleSheet,
-  ActivityIndicator,
-  StatusBar,
-  ScrollView,
-  Image,
 } from "react-native";
 
 //components
 import { TextApp } from "../../components/textApp/TextApp";
 import { ButtonSection } from "../../components/buttonSection/ButtonSection";
-import { PokemonStats } from "../PokemonStats";
-import PokemonEvolutions from "../PokemonEvolutions";
-import PokemonMoves from "../PokemonMoves";
 import { Container } from "../../components";
 import { styles } from "./pokemonInfo.style";
 import { PokemonInfoViewT } from "./pokemonInfo.type";
@@ -22,10 +14,12 @@ export const PokemonInfoView: FC<PokemonInfoViewT> = ({
   backgroundColor,
   selectedView,
   setSelectedView,
-  pokemon
+  pokemon,
+  isLoading
 }) => {
+
   return (
-    <Container backgroundColor={backgroundColor}>
+    <Container backgroundColor={backgroundColor} isLoading={isLoading}>
       <View style={styles.info}>
         <TextApp style={styles.title} title={pokemon.name} />
         <TextApp style={styles.desc} title={pokemon.desc} />
