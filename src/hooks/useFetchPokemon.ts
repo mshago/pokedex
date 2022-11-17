@@ -28,7 +28,7 @@ export const useFetchPokemon = (url:string):useFetchPokemonT => {
                         })
                     )
             })
-    },[url])
+    },[])
 
     return state;
 }

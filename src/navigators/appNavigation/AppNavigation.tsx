@@ -4,11 +4,8 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import {PokemonNavigation} from '../pokemonNavigation/PokemonNavigation'
-import { COLORS } from '../../assets/colors/colors';
+import {COLORS} from '@assets'
 import { TAppNavigationRoutes, EAppNavigationRoutes } from './AppNavigation.type';
-import { MovesNavigation } from '../movesNavigation/MovesNavigation';
-import { ItemsNavigation } from '../itemsNavigation/ItemsNavigation';
 
 const Tab = createBottomTabNavigator<TAppNavigationRoutes>()
 
@@ -49,9 +46,9 @@ export const AppNavigation = () => {
             backgroundColor:COLORS.gray,
           },
         }}>
-        <Tab.Screen name={EAppNavigationRoutes.POKEMON} component={PokemonNavigation} />
-        <Tab.Screen name={EAppNavigationRoutes.MOVES} component={MovesNavigation} />
-        <Tab.Screen name={EAppNavigationRoutes.ITEMS} component={ItemsNavigation} />
+        <Tab.Screen name={EAppNavigationRoutes.POKEMON_LIST} component={PokemonNavigation} />
+        <Tab.Screen name={EAppNavigationRoutes.MOVES_LIST} component={MovesNavigation} />
+        <Tab.Screen name={EAppNavigationRoutes.ITEMS_LIST} component={ItemsNavigation} />
       </Tab.Navigator>
       </NavigationContainer>
   )

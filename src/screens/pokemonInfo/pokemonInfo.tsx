@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { View, Text } from "react-native";
 
 //components
 import { COLORS_TYPE } from "../../assets/colors/colors";
+import { Container } from "../../components";
 
 //custom hooks
 import { useFetchPokemon } from "../../hooks/useFetchPokemon";
@@ -12,8 +14,12 @@ export const PokemonInfo = ({ navigation, route }) => {
   const [selectedView, setSelectedView] = useState("stats");
   const { data: pokemon, loading } = useFetchPokemon(url);
 
-  const COLOR = loading ? COLORS_TYPE["normal"] : COLORS_TYPE[pokemon.types[0]];
-
+  let COLOR = COLORS_TYPE["normal"];
+  if (!loading && pokemon !== null) {
+    COLOR = COLORS_TYPE[pokemon?.types[0]];
+  }
+  console.log(COLOR, pokemon, loading);
+  
   return (
     <PokemonInfoView
       backgroundColor={COLOR}

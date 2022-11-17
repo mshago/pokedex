@@ -1,39 +1,48 @@
-import { StyleSheet,Dimensions } from "react-native"
-const HEIGHT = Dimensions.get('window').height
+import { StyleSheet, Dimensions } from "react-native";
+import { COLORS } from "../../assets/colors/colors";
+const HEIGHT = Dimensions.get("window").height;
 
 export const styles = StyleSheet.create({
-  container:{
-    flexGrow:1,
-    justifyContent:'flex-start',
-    alignItems:'center',
+  container: {
+    flexGrow: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
-  loading:{
-    flex:1,
-    justifyContent:'center',
-    alignContent:'center'
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
   },
-  info:{
-    alignSelf:'stretch',
-    alignItems:'center',
-    backgroundColor:'#fff',
-    paddingTop:50,
-    borderTopLeftRadius:25,
-    borderTopRightRadius:25,
-    top:HEIGHT/5,
-    flexGrow:1,
+  info: {
+    alignSelf: "stretch",
+    alignItems: "center",
+    backgroundColor: COLORS.white,
+    minHeight:HEIGHT,
+    paddingTop: 50,
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
+    top: HEIGHT / 5,
+    flexGrow: 1,
   },
-  title:{
-    fontSize:40,
-    includeFontPadding:false,
-    textTransform: 'capitalize',
+  title: {
+    fontSize: 40,
+    includeFontPadding: false,
+    textTransform: "capitalize",
   },
-  tag:{
-    height:60,
+  tag: {
+    height: 60,
   },
-  desc:{
-    marginVertical:20,
-    marginHorizontal:20,
-    textAlign:'center',
-    fontSize:14,
+  desc: {
+    marginVertical: 20,
+    marginHorizontal: 20,
+    textAlign: "center",
+    fontSize: 14,
   },
-})
+  sprite: {
+    width: 175,
+    height: 175,
+    position: "absolute",
+    zIndex: 2,
+    alignSelf: "center",
+  },
+});
