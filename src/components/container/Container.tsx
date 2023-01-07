@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 import {
   SafeAreaView,
   View,
@@ -43,6 +43,7 @@ export const Container: FC<TContainer> = ({
   }
 
   return (
+    <Fragment>
     <SafeAreaView
       style={[
         styles.safeAreaContainer,
@@ -55,5 +56,7 @@ export const Container: FC<TContainer> = ({
         <View style={[styles.content, contentStyle]}>{children}</View>
       </Container>
     </SafeAreaView>
+    <SafeAreaView style={{flex:0,backgroundColor:COLORS.white}}/>
+  </Fragment>
   );
 };

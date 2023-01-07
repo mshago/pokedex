@@ -29,7 +29,7 @@ const ICONS = {
 };
 
 const TypeImage: FC<TypeImageT> = ({ type }) => {
-  return <Image style={styles.type} source={ICONS[type ? type : "normal"]} />;
+  return <Image style={styles.type} source={ICONS[type || "normal"]} />;
 };
 
 export const ListItem: FC<ListItemT> = ({ url, onPress }) => {

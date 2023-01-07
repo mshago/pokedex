@@ -18,7 +18,8 @@ export const PokemonInfo = ({ navigation, route }) => {
   if (!loading && pokemon !== null) {
     COLOR = COLORS_TYPE[pokemon?.types[0]];
   }
-  console.log(COLOR, pokemon, loading);
+
+  console.log(pokemon)
   
   return (
     <PokemonInfoView

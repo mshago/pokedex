@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import TextApp from './TextApp'
+import {TextApp} from './textApp/TextApp'
 
 const NAME_STATS = [
     'HP',
@@ -52,13 +52,6 @@ export default ({stats, color}) => {
                     return <Row key={x.name_stat} name={NAME_STATS[index]} stat={x.base_stat} color={color} />    
                 })
             }
-            {/*
-            <Row name={'HP'} stat={stats[0].base_stat} color={colors.COLOR_TYPE_GRASS}/>
-            <Row name={'ATK'} stat={stats[1].base_stat} color={colors.COLOR_TYPE_GRASS}/>
-            <Row name={'DEF'} stat={stats[2].base_stat} color={colors.COLOR_TYPE_GRASS}/>
-            <Row name={'SATK'} stat={stats[3].base_stat} color={colors.COLOR_TYPE_GRASS}/>
-            <Row name={'SDEF'} stat={stats[4].base_stat} color={colors.COLOR_TYPE_GRASS}/>
-            <Row name={'SPD'} stat={stats[5].base_stat} color={colors.COLOR_TYPE_GRASS}/>*/}
         </View>
     )
 }

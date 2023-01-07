@@ -1,55 +1,88 @@
-import React from 'react';
+import React from "react";
+import { Image } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { COLORS } from "@colors";
 import {
-  Image,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import {COLORS} from '@assets'
-import { TAppNavigationRoutes, EAppNavigationRoutes } from './AppNavigation.type';
+  TAppNavigationRoutes,
+  EAppNavigationRoutes,
+  TTabNavigationRoutes,
+  ETabNavigationRoutes,
+} from "./AppNavigation.type";
+import { PokemonList, PokemonInfo } from "../../screens";
+import { createStackNavigator } from "@react-navigation/stack";
 
-const Tab = createBottomTabNavigator<TAppNavigationRoutes>()
+const Tab = createBottomTabNavigator<TTabNavigationRoutes>();
+
+const Stack = createStackNavigator<TAppNavigationRoutes>();
 
 export const AppNavigation = () => {
-
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName={EAppNavigationRoutes.POKEMON}
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, size }) => {
-            let iconName
+      <StackNavigation />
+    </NavigationContainer>
+  );
+};
 
-            if(route.name === 'Pokemon'){
-              iconName = focused
-                ? require('../../assets/img/icons/pokemon-active-icon.png')
-                : require('../../assets/img/icons/pokemon-icon.png')
-            } else if (route.name === 'Moves'){
-              iconName = focused
-                ? require('../../assets/img/icons/moves-active-icon.png')
-                : require('../../assets/img/icons/moves-icon.png')
-            } else if (route.name === 'Items'){
-              iconName = focused
-                ? require('../../assets/img/icons/items-active-icon.png')
-                : require('../../assets/img/icons/items-icon.png')
-            }
+export const StackNavigation = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName={EAppNavigationRoutes.TAB}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name={EAppNavigationRoutes.TAB} component={TabNavigation} />
+      <Stack.Screen
+        name={EAppNavigationRoutes.POKEMON_INFO}
+        component={PokemonInfo}
+      />
+    </Stack.Navigator>
+  );
+};
 
-            return <Image source={iconName} style={{height:size, width:size}} />
+export const TabNavigation = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName={ETabNavigationRoutes.POKEMON_LIST}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, size }) => {
+          let iconName;
+
+          if (route.name === ETabNavigationRoutes.POKEMON_LIST) {
+            iconName = focused
+              ? require("../../assets/img/icons/pokemon-active-icon.png")
+              : require("../../assets/img/icons/pokemon-icon.png");
+          } else if (route.name === ETabNavigationRoutes.MOVES_LIST) {
+            iconName = focused
+              ? require("../../assets/img/icons/moves-active-icon.png")
+              : require("../../assets/img/icons/moves-icon.png");
+          } else if (route.name === ETabNavigationRoutes.ITEMS_LIST) {
+            iconName = focused
+              ? require("../../assets/img/icons/items-active-icon.png")
+              : require("../../assets/img/icons/items-icon.png");
           }
-        })}
-        sceneContainerStyle={{height:80}}
-        tabBarOptions={{
-          activeTintColor:COLORS.active,
-          inactiveTintColor:COLORS.inactive,
-          tabStyle:{backgroundColor:COLORS.gray},
-          labelStyle:{fontSize:14},
-          style:{
-            backgroundColor:COLORS.gray,
-          },
-        }}>
-        <Tab.Screen name={EAppNavigationRoutes.POKEMON_LIST} component={PokemonNavigation} />
-        <Tab.Screen name={EAppNavigationRoutes.MOVES_LIST} component={MovesNavigation} />
-        <Tab.Screen name={EAppNavigationRoutes.ITEMS_LIST} component={ItemsNavigation} />
-      </Tab.Navigator>
-      </NavigationContainer>
-  )
-}
+
+          return (
+            <Image source={iconName} style={{ height: size, width: size }} />
+          );
+        },
+      })}
+      sceneContainerStyle={{ height: 80 }}
+      tabBarOptions={{
+        activeTintColor: COLORS.active,
+        inactiveTintColor: COLORS.inactive,
+        tabStyle: { backgroundColor: COLORS.gray },
+        labelStyle: { fontSize: 14 },
+        style: {
+          backgroundColor: COLORS.gray,
+        },
+      }}
+    >
+      <Tab.Screen
+        name={ETabNavigationRoutes.POKEMON_LIST}
+        component={PokemonList}
+      />
+      {/* <Tab.Screen name={EAppNavigationRoutes.MOVES} component={MovesNavigation} />
+        <Tab.Screen name={EAppNavigationRoutes.ITEMS} component={ItemsNavigation} /> */}
+    </Tab.Navigator>
+  );
+};
