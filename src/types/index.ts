@@ -11,13 +11,15 @@ export type PokemonPreviewDataT = {
 };
 
 export type PokemonDataT = {
-  abilities: Array<{
-    name:string,
-    effect:string,
-  }>;
+  abilities: Array<AbilityT>;
   desc: string;
   name: string;
   types: string[];
   sprite: string;
   stats: number[];
 };
+
+export type AbilityT = {
+  name:string,
+  effect:string,
+}
