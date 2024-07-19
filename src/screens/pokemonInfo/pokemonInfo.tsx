@@ -19,8 +19,8 @@ export const PokemonInfo = ({ navigation, route }) => {
     COLOR = COLORS_TYPE[pokemon?.types[0]];
   }
 
-  console.log(pokemon)
-  
+  console.log('pokemon', pokemon);
+
   return (
     <PokemonInfoView
       backgroundColor={COLOR}

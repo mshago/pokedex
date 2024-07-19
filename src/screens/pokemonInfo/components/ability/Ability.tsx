@@ -1,5 +1,5 @@
-import { TextApp } from "components/textApp/TextApp"
-import { textTransform } from "helpers/text"
+import { TextApp } from "@components/textApp/TextApp"
+import { textTransform } from "../../../../utils/text"
 import React, { FC } from "react"
 import { View } from "react-native"
 import { styles } from "./Ability.style"

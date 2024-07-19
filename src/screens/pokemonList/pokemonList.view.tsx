@@ -18,6 +18,6 @@ export const PokemonListView : FC<PokemonListT>= ({ data, isLoading, handlePress
   );
 };
 
-const renderPokemonItem = ({item}: ListRenderItemInfo<DataListT>, handlePress) => {
+const renderPokemonItem = ({item}: ListRenderItemInfo<DataListT>, handlePress:(id:string) => any) => {
   return <ListItem url={item.url} onPress={() => handlePress(item.url)} />
 }

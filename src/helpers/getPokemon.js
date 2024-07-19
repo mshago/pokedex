@@ -1,14 +1,26 @@
-export const getAllPokemon = async (limit = 10, offset = 0) => {
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
-  const resp = await fetch(url);
-  const { results } = await resp.json();
+import { getData, storeData } from "../utils/localStorage";
+import APIs from "api/api-urls";
+import getApi from "./getFromApi";
 
-  return results.map((pkm) => {
+export const getAllPokemon = async (limit = 20, offset = 1) => {
+  // const dataFromLocalStorage = await getData("pokemonList");
+  // console.log("pokemon", dataFromLocalStorage);
+  // if (dataFromLocalStorage) {
+  //   return dataFromLocalStorage;
+  // }
+  const url = `${APIs.POKEMON}?limit=${limit}&offset=${offset}`;
+  const response = await getApi(url);
+
+  const pokemonList = response.map((pkm) => {
     return {
       name: pkm.name,
       url: pkm.url,
     };
   });
+
+  // await storeData("pokemon", pokemonList);
+
+  return pokemonList;
 };
 
 const getPokemonTypes = (types) => {
@@ -18,7 +30,6 @@ const getPokemonTypes = (types) => {
 };
 
 const getPokemonAbilities = async (abilities) => {
-
   const getAbilities = await abilities.map(async ({ ability }) => {
     const ability_desc = await fetch(ability.url);
     const { effect_entries } = await ability_desc.json();
@@ -31,12 +42,12 @@ const getPokemonAbilities = async (abilities) => {
     return {
       name: ability.name,
       effect: result,
-    }
+    };
   });
 
-  const ab = await Promise.all(getAbilities)
+  const ab = await Promise.all(getAbilities);
 
-  return ab
+  return ab;
 };
 
 const getPokemonStats = (stats) => {
